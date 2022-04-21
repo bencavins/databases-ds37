@@ -10,6 +10,16 @@ CREATE TABLE IF NOT EXISTS demo (
 """
 
 
+INSERT_DATA = """
+INSERT INTO demo 
+(s, x, y)
+VALUES
+("g", 3, 9),
+("v", 5, 7),
+("f", 8, 7);
+"""
+
+
 def create_sqlite_connection(db_name='demo_data.sqlite3'):
     connection = sqlite3.connect(db_name)
     return connection
