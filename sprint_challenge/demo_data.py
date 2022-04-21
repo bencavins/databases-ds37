@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS demo (
 );
 """
 
-
 INSERT_DATA = """
 INSERT INTO demo 
 (s, x, y)
@@ -17,6 +16,22 @@ VALUES
 ("g", 3, 9),
 ("v", 5, 7),
 ("f", 8, 7);
+"""
+
+COUNT_ROWS = """
+SELECT COUNT(*)
+FROM demo;
+"""
+
+COUNT_XY_AT_LEAST_5 = """
+SELECT COUNT(*)
+FROM demo
+WHERE x >= 5 AND y >= 5;
+"""
+
+COUNT_DISTINCT_Y = """
+SELECT COUNT(DISTINCT y)
+FROM demo;
 """
 
 
@@ -37,3 +52,7 @@ def execute_data_update(connection, query):
     connection.commit()
 
 
+sl_conn = create_sqlite_connection()
+row_count = execute_query(sl_conn, COUNT_ROWS)
+xy_at_least_5 = execute_query(sl_conn, COUNT_XY_AT_LEAST_5)
+unique_y = execute_query(sl_conn, COUNT_DISTINCT_Y)
